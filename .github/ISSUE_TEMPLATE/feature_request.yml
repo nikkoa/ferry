@@ -1,0 +1,60 @@
+name: Feature request
+description: Suggest a new feature or improvement for Ferry
+title: "[Feature]: "
+labels: ["enhancement", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a feature. Ferry is in public beta, so feedback shapes what ships next.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem are you trying to solve?
+      description: What's the situation or friction that prompted the request? Focus on the "why" rather than the "how".
+      placeholder: I'm managing 12 WordPress sites and every time I do a DB pull I have to manually...
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Your proposed solution
+      description: If you have one in mind, describe it. It's fine to not have a specific proposal — the problem description is the important part.
+      placeholder: Ferry could add a "sync all sites" button that iterates through each site in the sidebar and runs Pull database...
+    validations:
+      required: false
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives you've considered
+      description: Are there workarounds today, or other approaches you considered?
+    validations:
+      required: false
+
+  - type: dropdown
+    id: stack
+    attributes:
+      label: Does this relate to a specific stack?
+      options:
+        - WordPress
+        - Craft CMS
+        - Laravel
+        - Statamic
+        - SilverStripe
+        - Custom
+        - All stacks / not stack-specific
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Before submitting
+      options:
+        - label: I've searched existing issues and this isn't a duplicate
+          required: true
+        - label: I've checked the [docs](https://github.com/nikkoa/ferry/tree/main/docs) and this isn't already supported
+          required: true

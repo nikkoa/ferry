@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Ferry documentation
+    url: https://github.com/nikkoa/ferry/tree/main/docs
+    about: Read the docs before filing — the answer may already be there.
+  - name: Ferry website
+    url: https://getferry.dev
+    about: Download the latest beta.

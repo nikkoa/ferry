@@ -1,0 +1,124 @@
+name: Bug report
+description: Something is broken in Ferry
+title: "[Bug]: "
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug. The more specific you can be, the faster it can be fixed.
+
+        **Before filing**: check [existing issues](https://github.com/nikkoa/ferry/issues?q=is%3Aissue) to avoid duplicates, and make sure you're on the [latest beta build](https://github.com/nikkoa/ferry/releases/latest).
+
+  - type: input
+    id: version
+    attributes:
+      label: Ferry version
+      description: Shown on Ferry's home screen below the title, or in the About pane.
+      placeholder: e.g. 0.6.0-beta.1
+    validations:
+      required: true
+
+  - type: input
+    id: macos
+    attributes:
+      label: macOS version
+      description: Apple menu → About This Mac.
+      placeholder: e.g. 14.4 (Sonoma) on Apple Silicon
+    validations:
+      required: true
+
+  - type: dropdown
+    id: stack
+    attributes:
+      label: Stack type
+      description: Which stack preset is the affected site using?
+      options:
+        - WordPress
+        - Craft CMS
+        - Laravel
+        - Statamic
+        - SilverStripe
+        - Custom
+        - Not applicable
+    validations:
+      required: true
+
+  - type: dropdown
+    id: operation
+    attributes:
+      label: Operation
+      description: Which operation fails or misbehaves?
+      options:
+        - Pull database
+        - Push database
+        - Pull files
+        - Push files
+        - Local backup
+        - Remote backup
+        - Full Sync
+        - Connection test (Local DB)
+        - Connection test (Remote DB)
+        - Connection test (SSH)
+        - Project auto-detect
+        - App launch / crash
+        - Other / UI
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: Describe the bug and what you expected to happen instead.
+      placeholder: I clicked Pull database. The SSH connection test passed, then the dump step failed with an error about...
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: What would someone else do to reproduce the bug on their machine?
+      placeholder: |
+        1. Add a new site with stack WordPress
+        2. Fill in local and remote tabs
+        3. Click Test Connection on Remote — passes
+        4. Slide to pull the database
+        5. Observe the error at step X
+    validations:
+      required: true
+
+  - type: textarea
+    id: log
+    attributes:
+      label: Operation log
+      description: |
+        From the History view, click the failed run to expand it, then copy the step detail.
+        **Redact any passwords** before pasting.
+      render: text
+    validations:
+      required: false
+
+  - type: textarea
+    id: cli_check
+    attributes:
+      label: Does the equivalent command work manually?
+      description: If Ferry fails at a specific step (e.g. mysqldump), try the same command in your terminal. This often reveals environment or PATH issues.
+      placeholder: |
+        Yes / No / Haven't tried
+        If yes, what's different about Ferry's invocation?
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Before submitting
+      options:
+        - label: I've searched existing issues and this is not a duplicate
+          required: true
+        - label: I'm on the latest beta build
+          required: true
+        - label: I've redacted passwords and other secrets from the log
+          required: true
