@@ -3,6 +3,7 @@
 Native macOS utility for one-click database and file sync between local and remote web dev environments. Built for developers managing multiple sites across **WordPress**, **Craft CMS**, **Laravel**, **Statamic**, and **SilverStripe**.
 
 **Website**: [getferry.dev](https://getferry.dev)
+<br>
 **Status**: Public beta — expect rough edges and feedback welcome
 
 ---
