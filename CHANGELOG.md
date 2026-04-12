@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.1] — 2026-04-12
+
+### Fixed
+
+- **File sync nested directory bug** — rsync remote source paths were missing a trailing slash, causing files to sync into a nested subdirectory (e.g. `product/product/`) instead of syncing the contents directly. Local paths already had the trailing slash; remote paths now match.
+
+### Changed
+
+- **DMG tooling** — switched from create-dmg to dmgbuild with a branded retina background image.
+- **Bundle identifier** — renamed to `dev.getferry` and centralized the constant.
+
 ## [0.6.0-beta.1] — 2026-04-11
 
 First public beta. Ferry is a native macOS utility that syncs databases and files between your local development environment and a remote server, with stack-specific presets for WordPress, Craft CMS, Laravel, Statamic, and SilverStripe.
