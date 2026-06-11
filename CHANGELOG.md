@@ -7,6 +7,40 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.9.0] — 2026-06-12
+
+Release candidate for 1.0. A full review pass (including independent model reviews) over the operations pipeline, plus the remaining spec features.
+
+### Added
+
+- **Dry run mode (`⌘D`)** — toggle in the dashboard header; any operation triggered with dry run on shows the exact commands it would run (passwords redacted) in a preview sheet instead of executing. Works for all operations including `⌘R` re-run.
+- **Preferences window (`⌘,`)** — default SSH key path, backup directory, and retention count. Newly added sites inherit the defaults; existing sites keep their own config.
+- **Background notifications** — a system notification fires when an operation finishes while Ferry isn't the active app. Failures get a sound; cancellations stay quiet.
+- **Sidebar status dots** — each site shows its last operation result (green/red/orange) with relative time on hover.
+- **`⌘1` / `⌘2`** — switch between Dashboard and History for the selected site.
+- **Live output in the dashboard** — expanded activity rows now stream the running step's last output line, show per-table progress, and offer per-step detail popovers plus a Full Log sheet (previously only step names were visible; errors required the History view).
+
+### Fixed
+
+- **File push pre-hooks** — pre-push hooks now run for file push (previously silently skipped). Post-push hooks for file sync now execute on the remote in the remote document root, matching DB push semantics.
+- **rsync with SSH password auth** — file sync now works with password-based SSH via `sshpass`, same as DB operations. The password travels through the process environment, never the command string. Key auth uses `BatchMode` so a locked key fails fast instead of hanging.
+- **Production push safety** — `⌘R` re-run of a production push now requires the same confirmation as triggering it from the card, and the confirmation honors the dry-run toggle at confirm time.
+- **Cancelled operations** — cancelling a run now records it as cancelled (orange) instead of failed (red), and no longer posts a "failed" notification.
+- **Log streaming integrity** — pipeline output is read as an ordered line stream: rsync's carriage-return progress rewrites display correctly, per-file byte counters are filtered from logs, and the final lines of a step's output (e.g. the error that explains a failure) can no longer be lost or reordered at process exit.
+- **Finished runs** — no longer linger as a fake "In progress…" row in the activity list after completing.
+- **Preferences edge case** — clearing a Settings field no longer causes new sites to inherit an empty SSH key path or backup directory.
+
+### Changed
+
+- **Version badge** — beta builds show "Beta vX.Y.Z (build) / Expires …"; builds made with `release.sh --no-expiry` (reserved for 1.0+) show a bare version with no beta labelling.
+- **release.sh** — refuses to build if the beta-expiry placeholder has been clobbered, preventing an accidentally time-bombed release.
+
+## [0.6.2] — 2026-04-17
+
+### Changed
+
+- **Onboarding screen** — replaced the legacy empty-project screen with the branded home-screen layout: waves background, centered card, FerryLogo, beta version footer, and a pill-shaped "Add Your First Project" button.
+
 ## [0.6.1] — 2026-04-12
 
 ### Fixed
